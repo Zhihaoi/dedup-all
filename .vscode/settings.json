@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "recdir.h": "c",
+        "error_t.h": "c"
+    }
+}
