@@ -11,7 +11,7 @@
 #include "./stb_ds.h"
 
 #define CHUNK_SIZE 4096
-#define REF_COUNT 10000
+#define REF_COUNT 100000
 #define OUTPUT_FILE "output.txt"
 
 /*256-bit hash value*/
@@ -153,12 +153,13 @@ int main(int argc, char **argv)
 
     for(ptrdiff_t i = 0; i < REF_COUNT; ++i) {
         if(refs[i] > 0) {
-            fprintf(f, "%lu %lu\n", i, refs[i]);
+            fprintf(f, "%lu \tlu\n", i, refs[i]);
         }
     }
 
+    fprintf(f, "\nTotal chunks: \t%lu\n", total_chunks);
+    fprintf(f, "Duplication Ratio: \t%lu\n", 1 - (refs[1]/total_chunks));
+    
     fclose(f);
-
-    printf("Total chunks: %lu\n", total_chunks);
     return 0;
 }
