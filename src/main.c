@@ -11,7 +11,8 @@
 #include "./stb_ds.h"
 
 #define CHUNK_SIZE 4096
-#define REF_COUNT 1000
+#define REF_COUNT 10000
+#define OUTPUT_FILE "output.txt"
 
 /*256-bit hash value*/
 typedef struct {
@@ -129,11 +130,6 @@ int main(int argc, char **argv)
 
     recdir_close(recdir);
 
-    // TODO: memory allocated by the iterations process is not cleaned up properly
-    // - join_path
-    // - dynamic array of paths
-    // - hash table
-
     u_int64_t refs[REF_COUNT] = {0};
     printf("db size: %lu\n", hmlen(db));
 
@@ -146,11 +142,22 @@ int main(int argc, char **argv)
             exit(1);
         }
     }
+
+    FILE *f = fopen(OUTPUT_FILE, "w");
+    if (f == NULL) {
+        fprintf(stderr, "Could not open file %s: %s\n",
+                OUTPUT_FILE, strerror(errno));
+        exit(1);
+    }
+
+
     for(ptrdiff_t i = 0; i < REF_COUNT; ++i) {
         if(refs[i] > 0) {
-            printf("Ref count %lu: %lu chunks\n", i, refs[i]);
+            fprintf(f, "%lu %lu\n", i, refs[i]);
         }
     }
+
+    fclose(f);
 
     printf("Total chunks: %lu\n", total_chunks);
     return 0;
