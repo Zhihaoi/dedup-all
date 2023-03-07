@@ -2,5 +2,6 @@
     "files.associations": {
         "recdir.h": "c",
         "error_t.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

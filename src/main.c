@@ -158,7 +158,8 @@ int main(int argc, char **argv)
     }
 
     fprintf(f, "\nTotal chunks: \t%lu\n", total_chunks);
-    fprintf(f, "Duplication Ratio: \t%lu\n", 1 - (refs[1]/total_chunks));
+    /*Printf refs[1]/total_chunks*/
+    fprintf(f, "Duplication Ratio: \t%f\n", 1.0 - (refs[1] / 1.0 / total_chunks));
     
     fclose(f);
     return 0;
