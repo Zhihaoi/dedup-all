@@ -153,7 +153,7 @@ int main(int argc, char **argv)
 
     for(ptrdiff_t i = 0; i < REF_COUNT; ++i) {
         if(refs[i] > 0) {
-            fprintf(f, "%lu \tlu\n", i, refs[i]);
+            fprintf(f, "%lu \t%lu\n", i, refs[i]);
         }
     }
 
